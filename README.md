@@ -16,6 +16,7 @@ Python Orientado a Objeto - (POO)
 Commit|Descrição|Data
 |---|---|---|
 |Inicial|Sistema Banco/Cadastro/Deposito/Saque/Extrato   | 04/04/2024|
+|Update|Acrescimo de logs e controle de datas|25/04/2024|
 
 
 <h2>

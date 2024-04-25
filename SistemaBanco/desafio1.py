@@ -129,8 +129,7 @@ class Historico:
             {
                 "tipo": transacao.__class__.__name__,
                 "valor": transacao.valor,
-                "data": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
-                
+                "data": datetime.now().strftime("%d-%m-%Y %H:%M:%s"),
             }
         )
 
@@ -179,12 +178,12 @@ class Deposito(Transacao):
 def menu():
     menu = """\n
     ================ MENU ================
-    [1]\tDepositar
-    [2]\tSacar
-    [3]\tExtrato
-    [4]\tNova conta
-    [5]\tListar contas
-    [5]\tNovo usuário
+    [d]\tDepositar
+    [s]\tSacar
+    [e]\tExtrato
+    [nc]\tNova conta
+    [lc]\tListar contas
+    [nu]\tNovo usuário
     [q]\tSair
     => """
     return input(textwrap.dedent(menu))
@@ -202,7 +201,6 @@ def recuperar_conta_cliente(cliente):
 
     # FIXME: não permite cliente escolher a conta
     return cliente.contas[0]
-
 
 
 def depositar(clientes):
@@ -292,7 +290,7 @@ def criar_conta(numero_conta, clientes, contas):
     cliente = filtrar_cliente(cpf, clientes)
 
     if not cliente:
-        print("\n@@@ Cliente não encontrado, fluxo de criação de conta encerrado!")
+        print("\n@@@ Cliente não encontrado, fluxo de criação de conta encerrado! @@@")
         return
 
     conta = ContaCorrente.nova_conta(cliente=cliente, numero=numero_conta)
@@ -315,23 +313,23 @@ def main():
     while True:
         opcao = menu()
 
-        if opcao == "1":
+        if opcao == "d":
             depositar(clientes)
 
-        elif opcao == "2":
+        elif opcao == "s":
             sacar(clientes)
 
-        elif opcao == "3":
+        elif opcao == "e":
             exibir_extrato(clientes)
 
-        elif opcao == "4":
+        elif opcao == "nu":
             criar_cliente(clientes)
 
-        elif opcao == "5":
+        elif opcao == "nc":
             numero_conta = len(contas) + 1
             criar_conta(numero_conta, clientes, contas)
 
-        elif opcao == "6":
+        elif opcao == "lc":
             listar_contas(contas)
 
         elif opcao == "q":
